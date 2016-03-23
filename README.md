@@ -13,29 +13,45 @@ To include the Network Interface plugin in your PhoneGap Build application, add 
 
     cordova plugin add cordova-plugin-networkinterface
 
-## Usage (Android)
+## Usage (iOS, Android)
 
-The plugin creates the object `networkinterface` with the methods `getIPAddress(onSuccess, onError)`.
+The plugin creates the object `networkinterface` with the method `getIPAddress(onSuccess, onError)`.
 
 Example:
 
-	networkinterface.getIPAddress(function (ip) { alert(ip); });
+	networkinterface.getIPAddress(function (ips) { alert(ips); });
 
-## Usage (iOS)
-For iOS usage is the same but we've extended the result to contain a JSON Array instead of a single IP.
-The result object is structured as follows:
+The result contains a JSON Array of IPs.
+
+iOS:
 
 ```js
 [
   {
     adapter: "en0", // wifi
-    ip: 32.3.4.211
+    ip: "1.2.3.4"
   },
   {
-    adapter: "pdp_ip0", // probably cellular
-    10.115.84.23
+    adapter: "pdp_ip0", // cellular
+    ip: "1.2.3.4"
   },
-  ..
+  ...
+]
+```
+
+Android:
+
+```js
+[
+  {
+    adapter: "wlan0", // wifi
+    ip: "1.2.3.4"
+  },
+  {
+    adapter: "rmnet0", // cellular
+    ip: "1.2.3.4"
+  },
+  ...
 ]
 ```
 
